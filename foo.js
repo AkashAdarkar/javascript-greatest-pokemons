@@ -4618,22 +4618,23 @@ let pokemons = [
       ]
     }
   ]
+  function getHeavyPokemons(pokemonArray){
+    if(pokemonArray.length === 0) return 0;
 
+    const pikachu = pokemonArray.find(pokemon=>pokemon.name === "Pikachu");
+    const pikachuWeight = parseFloat(pikachu.weight)
+  
+
+     const otherPokemon = pokemonArray.filter((pokemon)=>{
+        return parseFloat(pokemon.weight) > pikachuWeight;
+    })
+
+    return otherPokemon.map(poke=>poke.name)      
+
+  }   
 
     
-function candyAverage(pokemonArray){
-   const countCandy = pokemonArray.map(pokemon=>pokemon.candy_count || 0);
-//    return countCandy;
-   const totalCandy = countCandy.reduce((total,sum)=>total+sum,0)
-   return Math.round((totalCandy/pokemonArray.length)*100)/100
 
-    
-}
-
-
-
-    
-
-
-console.log(candyAverage(pokemons));
+ 
+console.log(getHeavyPokemons(pokemons));
 // console.log(candyAverage([{ candy_count: 8 }, { candy_count: 9 }, { candy_count: 9 }])); //8.67
